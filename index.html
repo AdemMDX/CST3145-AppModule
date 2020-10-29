@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Depot</title>
+
+    <script src="https://unpkg.com/vue"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+
+<body>
+    <div id="app"></div>
+    <!-- gets app id -->
+    <div id="app2">
+        <!-- gets app2 id -->
+
+        <header>
+        <h1 v-text='sitename'></h1>
+        <button @click='showCheckout'>{{cartItemCount}} <span class="fas fa-cart-plus"> </span>
+             Checkout</button>
+        </header>
+
+        <div v-if='showProduct'>
+        <main>
+        <figure>
+            <img v-bind:src="product.image" alt="pet food">
+            <!-- v-bind binds (calls the image) the image from product to html -->
+          </figure>
+          <h2 v-text="product.title"></h2>
+          <!-- v-tect treated only as text not html -->
+          <p v-html="product.description"></p>
+          <!-- v-html treated as html -->
+          <p>Price: {{product.price}}</p>
+          <!-- v-html could still work instead -->
+          <!-- price is the tect that displays while product.price displays it -->
+          <p>Number Of Spaces: {{product.availableInventory}}</p>
+          <button @click='addToCart' v-if='canAddToCart'>
+              Add to cart
+          </button>
+        <button disabled='disabled' v-else>
+            Add to cart
+        </button>
+    </div>
+    <div v-else>
+        <!-- checkout page -->
+        <p>*<em>Checkout Page</em>*</p>
+    </div>
+
+        </main>
+    </div>
+
+    <script>
+
+    let webstore = new Vue({
+        el: '#app'
+    }) //app id
+    
+
+    let newwebstore2 = new Vue({
+        el: '#app2',
+        data: {
+            sitename: 'Pet Depot',
+            product: {
+                id: 1001,
+                title: "Cat Food, 25lb bag",
+                description: "A 25 pound bag of <em>irresistable</em>, " + "organic goodness for your cat",
+                price: "£" + 20,
+                image: "/images/product-fullsize.png",
+                //image2: "image 2 placeholder"
+                availableInventory: 5
+            },
+            cart: [],
+            showProduct: true,
+        },
+        methods: {
+            addToCart: function() {
+                this.cart.push(this.product.id);
+            },
+            showCheckout () {
+                this.showProduct = this.showProduct ? false : true;
+            }
+        },
+        computed: {
+            cartItemCount: function() {
+                return this.cart.length || '';
+            },
+            canAddToCart: function () {
+                return this.product.availableInventory > this.cartItemCount;
+            }
+        }//end of computed
+    })//app2 id
+
+    </script>
+</body>
+</html>
