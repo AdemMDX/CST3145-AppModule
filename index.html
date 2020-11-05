@@ -44,11 +44,22 @@
     </div>
     <div v-else>
         <!-- checkout page -->
-        <p>*<em>Checkout Page</em>*</p>
+        <h2><em>Checkout Page</em></h2>
+        <p>
+            <strong>First Name:</strong>
+            <input v-model='order.firstname'>
+        </p>
+        <p>
+            <strong>Last Name:</strong>
+            <input v-model='order.lastname'>
+        </p>
     </div>
 
         </main>
     </div>
+
+
+
 
     <script>
 
@@ -72,6 +83,10 @@
             },
             cart: [],
             showProduct: true,
+            order: {
+                firstname: '',
+                lastname: '',
+            }
         },
         methods: {
             addToCart: function() {
