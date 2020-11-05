@@ -53,6 +53,34 @@
             <strong>Last Name:</strong>
             <input v-model='order.lastname'>
         </p>
+
+        <p>
+            <strong>Address:</strong>
+            <input v-model='order.address'>
+        </p>
+
+        <p>
+            <strong>City:</strong>
+            <input v-model='order.city'>
+        </p>
+
+        <p>
+            <strong>State:</strong>
+            <select v-model='order.state'>
+                <option disabled value="">State</option>
+                <option>AL</option>
+                <option>AR</option>
+                <option>CA</option>
+                <option>NV</option>
+                </select>
+        </p>
+
+        <p>
+            <strong>Zip/Postal Code:</strong>
+            <input v-model='order.zip'>         
+        </p>
+
+        <br></br>
         <h2>Order Information</h2>
         <p>First Name: {{order.firstname}}</p>
         <p>Last Name: {{order.lastname}}</p>
@@ -93,6 +121,10 @@
             order: {
                 firstname: '',
                 lastname: '',
+                address: '',
+                city: '',
+                state: '',
+                zip: '',
             }
         },
         methods: {
