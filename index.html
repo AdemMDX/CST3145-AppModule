@@ -68,16 +68,32 @@
             <strong>State:</strong>
             <select v-model='order.state'>
                 <option disabled value="">State</option>
-                <option>AL</option>
-                <option>AR</option>
-                <option>CA</option>
-                <option>NV</option>
-                </select>
+                <option v-for="(state, key) in states"
+                v-bind:value="state">
+                {{key}}
+                </option>
+            </select>
         </p>
 
         <p>
             <strong>Zip/Postal Code:</strong>
             <input v-model='order.zip'>         
+        </p>
+
+        <p>
+            <input type="checkbox" id='gift'
+            v-model='order.gift'
+            :true-value = 'order.sendGift'
+            :false-value = 'order.dontSendGift'
+            >
+            <label for="gift">Ship As Gift?</label>
+        </p>
+
+        <p>
+            <input type="radio" id='home' value='home' v-model='order.method'>
+            <label for="home">Home</label>
+            <input type="radio" id='business' value='business' v-model='order.method'>
+            <label for="business">Business</label>
         </p>
 
         <br></br>
@@ -88,6 +104,10 @@
         <p>City: {{order.city}}</p>
         <p>Zip: {{order.zip}}</p>
         <p>State: {{order.state}}</p>
+        <p>Ship As A Gift?: {{order.gift}}</p>
+
+
+        <button @click='submitForm'>Submit Order</button>
     </div>
 
         </main>
@@ -125,7 +145,17 @@
                 city: '',
                 state: '',
                 zip: '',
-            }
+                gift: '',
+                method: 'home',
+                sendGift: 'Send as a gift',
+                dontSendGift: 'Do not send as gift',
+            },
+            states: {
+                AL: 'Alabama',
+                AR: 'Arizona',
+                CA: 'California',
+                NV: 'nevada',
+            },
         },
         methods: {
             addToCart: function() {
@@ -133,7 +163,10 @@
             },
             showCheckout () {
                 this.showProduct = this.showProduct ? false : true;
-            }
+            },
+            showSubmit () {
+                alert('Order Submitted!')
+            },
         },
         computed: {
             cartItemCount: function() {
