@@ -14,7 +14,7 @@ let newwebstore2 = new Vue({
             price: "£" + 20,
             image: "https://logos.textgiraffe.com/logos/logo-name/Maths-designstyle-birthday-m.png",
             //image2: "image 2 placeholder"
-            availableInventory: 5
+            availableInventory: 5,
         },
         cart: [],
         showProduct: true,
@@ -29,6 +29,7 @@ let newwebstore2 = new Vue({
             method: 'home',
             sendGift: 'Send as a gift',
             dontSendGift: 'Do not send as gift',
+            phone: '',
         },
         states: {
             AL: 'Alabama',

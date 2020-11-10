@@ -22,16 +22,15 @@
         <h1 v-text='sitename'></h1>
         </header>
 
-        <!-- checkout button -->
+        <div v-if='showProduct'>
+                    <!-- checkout button -->
         <!-- only show if there is at least 1 item in cart -->
         <button @click='showCheckout' v-if='canGoToCheckout'>{{cartItemCount}} <span class="fas fa-cart-plus"> </span>
             Checkout Page</button>
       <button disabled='disabled' v-else>
         <span class="fas fa-cart-plus"> </span> Checkout Page
       </button>
-
-
-        <div v-if='showProduct'>
+      
         <main>
         <figure>
             <img v-bind:src="product.image" alt="maths image">
@@ -54,8 +53,12 @@
     </div>
     <div v-else>
         <!-- checkout page -->
+
+        <button @click='showCheckout'>
+            Lessons Page</button>
+
         <br></br>
-        <div>
+        <div style="float:left;width:400px;height:400px;">
         <h2><em>Checkout Page</em></h2>
         <p>
             <strong>First Name:</strong>
@@ -77,6 +80,17 @@
         </p>
 
         <p>
+            <strong>Phone Number:</strong>
+            <input v-model.trim='order.phone'>
+        </p>
+
+        <!--
+        <p>
+            <strong>Zip/Postal Code:</strong>
+            <input v-model.number='order.zip'>         
+        </p>
+ 
+        <p>
             <strong>State:</strong>
             <select v-model='order.state'>
                 <option disabled value="">State</option>
@@ -88,9 +102,12 @@
         </p>
 
         <p>
-            <strong>Zip/Postal Code:</strong>
-            <input v-model.number='order.zip'>         
+            <input type="radio" id='home' value='home' v-model='order.method'>
+            <label for="home">Home</label>
+            <input type="radio" id='business' value='business' v-model='order.method'>
+            <label for="business">Business</label>
         </p>
+        -->
 
         <p>
             <input type="checkbox" id='gift'
@@ -101,26 +118,27 @@
             <label for="gift">Ship As Gift?</label>
         </p>
 
-        <p>
-            <input type="radio" id='home' value='home' v-model='order.method'>
-            <label for="home">Home</label>
-            <input type="radio" id='business' value='business' v-model='order.method'>
-            <label for="business">Business</label>
-        </p>
     </div>
 
-        <br></br>
+    <div style="float:left">
         <h2>Order Information</h2>
         <p>First Name: {{order.firstname}}</p>
         <p>Last Name: {{order.lastname}}</p>
         <p>Address: {{order.address}}</p>
         <p>City: {{order.city}}</p>
-        <p>Zip: {{order.zip}}</p>
+        <p>Phone: {{order.phone}}</p>
+        <p>Ship As A Gift?: {{order.gift}}</p>
+        <!-- 
+        <p>Zip: {{order.zip}}</p> 
         <p>State: {{order.state}}</p>
         <p>Ship As A Gift?: {{order.gift}}</p>
+        <p>Home Or Business: {{order.business}}</p>
+        -->
 
+    </div>
 
-        <button @click='submitForm'>Submit Order</button>
+    <div style="float:left">
+    <button @click='submitForm'>Submit Order</button>
     </div>
 
         </main>
