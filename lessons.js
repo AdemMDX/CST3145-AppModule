@@ -54,6 +54,9 @@ let newwebstore2 = new Vue({
         },
         canAddToCart: function () {
             return this.product.availableInventory > this.cartItemCount;
-        }
+        },
+        canGoToCheckout: function () {
+            return 1 <= this.cartItemCount;
+        },
     }//end of computed
 })//app2 id

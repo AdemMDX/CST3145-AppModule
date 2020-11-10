@@ -20,9 +20,16 @@
 
         <header>
         <h1 v-text='sitename'></h1>
-        <button @click='showCheckout'>{{cartItemCount}} <span class="fas fa-cart-plus"> </span>
-             Checkout</button>
         </header>
+
+        <!-- checkout button -->
+        <!-- only show if there is at least 1 item in cart -->
+        <button @click='showCheckout' v-if='canGoToCheckout'>{{cartItemCount}} <span class="fas fa-cart-plus"> </span>
+            Checkout Page</button>
+      <button disabled='disabled' v-else>
+        <span class="fas fa-cart-plus"> </span> Checkout Page
+      </button>
+
 
         <div v-if='showProduct'>
         <main>
@@ -47,6 +54,8 @@
     </div>
     <div v-else>
         <!-- checkout page -->
+        <br></br>
+        <div>
         <h2><em>Checkout Page</em></h2>
         <p>
             <strong>First Name:</strong>
@@ -98,6 +107,7 @@
             <input type="radio" id='business' value='business' v-model='order.method'>
             <label for="business">Business</label>
         </p>
+    </div>
 
         <br></br>
         <h2>Order Information</h2>
