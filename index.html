@@ -62,11 +62,11 @@
         <h2><em>Checkout Page</em></h2>
         <p>
             <strong>First Name:</strong>
-            <input v-model.trim='order.firstname'>
+            <input v-model.trim='order.firstname' @keypress="onlyLetter($event)">
         </p>
         <p>
             <strong>Last Name:</strong>
-            <input v-model.trim='order.lastname'>
+            <input v-model.trim='order.lastname' @keypress="onlyLetter($event)">
         </p>
 
         <p>
@@ -81,7 +81,7 @@
 
         <p>
             <strong>Phone Number:</strong>
-            <input v-model.trim='order.phone'>
+            <input v-model.number='order.phone' type='number'>
         </p>
 
         <!--

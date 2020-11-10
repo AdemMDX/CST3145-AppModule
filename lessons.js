@@ -48,6 +48,14 @@ let newwebstore2 = new Vue({
         showSubmit () {
             alert('Order Submitted!')
         },
+        onlyLetter(e) {
+            let char = String.fromCharCode(e.keyCode); 
+            // Get user input letters
+            if(/^[A-Za-z]+$/.test(char)) return true; 
+            // check letters
+            else e.preventDefault(); 
+            // if it isn't letters, dont add
+          },
     },
     computed: {
         cartItemCount: function() {
