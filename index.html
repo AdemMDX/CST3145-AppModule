@@ -33,17 +33,17 @@
       
         <main>
         <figure>
-            <img v-bind:src="product.image" alt="maths image">
+            <img v-bind:src="maths.image" alt="maths image" width="8%" height="auto">
             <!-- v-bind binds (calls the image) the image from product to html -->
           </figure>
-          <h2 v-text="product.title"></h2>
+          <h2 v-text="maths.title"></h2>
           <!-- v-tect treated only as text not html -->
-          <p v-html="product.description"></p>
+          <p v-html="maths.description"></p>
           <!-- v-html treated as html -->
-          <p>Price: {{product.price}}</p>
+          <p>Price: {{maths.price}}</p>
           <!-- v-html could still work instead -->
           <!-- price is the tect that displays while product.price displays it -->
-          <p>Number Of Spaces: {{product.availableInventory}}</p>
+          <p>Number Of Spaces: {{maths.availableInventory}}</p>
           <button @click='addToCart' v-if='canAddToCart'>
               Add to cart
           </button>
@@ -138,7 +138,7 @@
     </div>
 
     <div style="float:left">
-    <button disabled='disabled' v-if='testName'>
+    <button disabled='disabled' v-if='checkName'>
         Submit Order
     </button>
   <button @click='showSubmit' v-else>

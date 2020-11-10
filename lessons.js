@@ -7,12 +7,12 @@ let newwebstore2 = new Vue({
     el: '#app2',
     data: {
         sitename: 'After School Club',
-        product: {
+        maths: {
             id: 1001,
             title: "Maths",
             description: "London",
             price: "£" + 20,
-            image: "https://logos.textgiraffe.com/logos/logo-name/Maths-designstyle-birthday-m.png",
+            image: "https://www.flaticon.com/svg/static/icons/svg/2891/2891382.svg",
             //image2: "image 2 placeholder"
             availableInventory: 5,
         },
@@ -40,13 +40,13 @@ let newwebstore2 = new Vue({
     },
     methods: {
         addToCart: function() {
-            this.cart.push(this.product.id);
+            this.cart.push(this.maths.id);
         },
         showCheckout () {
             this.showProduct = this.showProduct ? false : true;
         },
         showSubmit () {
-            if(this.order.firstname == '' || this.order.lastname == '') {
+            if(this.order.firstname == '' || this.order.lastname == '' || this.order.phone == '') {
                 alert("No Input")
             }
             else {
@@ -56,11 +56,11 @@ let newwebstore2 = new Vue({
         onlyLetter(e) {
             let char = String.fromCharCode(e.keyCode); 
             // Get user input letters
-            //e = any
             if(/^[A-Za-z]+$/.test(char)) return true; 
             // check letters
             else e.preventDefault(); 
             // if it isn't letters, dont add
+            //prevent it if not
           },
     },
     computed: {
@@ -68,13 +68,13 @@ let newwebstore2 = new Vue({
             return this.cart.length || '';
         },
         canAddToCart: function () {
-            return this.product.availableInventory > this.cartItemCount;
+            return this.maths.availableInventory > this.cartItemCount;
         },
         canGoToCheckout: function () {
             return 1 <= this.cartItemCount;
         },
-        testName: function () {
-            return this.order.firstname == '' || this.order.lastname == '';
+        checkName: function () {
+            return this.order.firstname == '' || this.order.lastname == '' || this.order.phone == '';
         },
     }//end of computed
 })//app2 id
