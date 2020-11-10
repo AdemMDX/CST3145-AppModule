@@ -46,11 +46,17 @@ let newwebstore2 = new Vue({
             this.showProduct = this.showProduct ? false : true;
         },
         showSubmit () {
+            if(this.order.firstname == '' || this.order.lastname == '') {
+                alert("No Input")
+            }
+            else {
             alert('Order Submitted!')
+            }
         },
         onlyLetter(e) {
             let char = String.fromCharCode(e.keyCode); 
             // Get user input letters
+            //e = any
             if(/^[A-Za-z]+$/.test(char)) return true; 
             // check letters
             else e.preventDefault(); 
@@ -66,6 +72,9 @@ let newwebstore2 = new Vue({
         },
         canGoToCheckout: function () {
             return 1 <= this.cartItemCount;
+        },
+        testName: function () {
+            return this.order.firstname == '' || this.order.lastname == '';
         },
     }//end of computed
 })//app2 id

@@ -61,11 +61,11 @@
         <div style="float:left;width:400px;height:400px;">
         <h2><em>Checkout Page</em></h2>
         <p>
-            <strong>First Name:</strong>
+            <strong>*First Name:</strong>
             <input v-model.trim='order.firstname' @keypress="onlyLetter($event)">
         </p>
         <p>
-            <strong>Last Name:</strong>
+            <strong>*Last Name:</strong>
             <input v-model.trim='order.lastname' @keypress="onlyLetter($event)">
         </p>
 
@@ -80,7 +80,7 @@
         </p>
 
         <p>
-            <strong>Phone Number:</strong>
+            <strong>*Phone Number:</strong>
             <input v-model.number='order.phone' type='number'>
         </p>
 
@@ -138,7 +138,12 @@
     </div>
 
     <div style="float:left">
-    <button @click='showSubmit'>Submit Order</button>
+    <button disabled='disabled' v-if='testName'>
+        Submit Order
+    </button>
+  <button @click='showSubmit' v-else>
+    Submit Order
+    </button>
     </div>
 
     </div>
