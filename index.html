@@ -3,7 +3,7 @@
 <head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maths</title>
+    <title>product</title>
 
     <script src="https://unpkg.com/vue"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -11,16 +11,16 @@
 
 <body>
 
-
-
     <div id="app"></div>
     <!-- gets app id -->
     <div id="app2">
         <!-- gets app2 id -->
 
+
         <header>
         <h1 v-text='sitename'></h1>
         </header>
+
 
         <div v-if='showProduct'>
                     <!-- checkout button -->
@@ -31,25 +31,58 @@
         <span class="fas fa-cart-plus"> </span> Checkout Page
       </button>
       
+
         <main>
         <figure>
-            <img v-bind:src="maths.image" alt="maths image" width="8%" height="auto">
+            <img v-bind:src="product.image" alt="product image" width="8%" height="auto">
             <!-- v-bind binds (calls the image) the image from product to html -->
           </figure>
-          <h2 v-text="maths.title"></h2>
+          <h2 v-text="product.title"></h2>
           <!-- v-tect treated only as text not html -->
-          <p v-html="maths.description"></p>
+          <p v-html="product.description"></p>
           <!-- v-html treated as html -->
-          <p>Price: {{maths.price}}</p>
+          <p>Price: {{product.price}}</p>
           <!-- v-html could still work instead -->
           <!-- price is the tect that displays while product.price displays it -->
-          <p>Number Of Spaces: {{maths.availableInventory}}</p>
+          <p>Number Of Spaces: {{product.availableInventory}}</p>
           <button @click='addToCart' v-if='canAddToCart'>
               Add to cart
           </button>
         <button disabled='disabled' v-else>
             Add to cart
         </button>
+        <span v-if="product.availableInventory === cartItemCount"> 
+            All out! 
+        </span>
+        <span v-else-if='product.availableInventory - cartItemCount < 5'>
+            Only {{product.availableInventory - cartItemCount}} left!
+        </span>
+        <span v-else>Buy now!</span>
+
+        <div>
+            <span v-for='n in product.rating'>★</span>
+            <span v-for='n in 5-product.rating'>☆</span>
+        </div>
+        
+
+
+        <br></br>
+        <!--
+        <figure>
+            <img v-bind:src="english.image" alt="english image" width="8%" height="auto">
+          </figure>
+          <h2 v-text="english.title"></h2>
+          <p v-html="english.description"></p>
+          <p>Price: {{english.price}}</p>
+          <p>Number Of Spaces: {{english.availableInventory}}</p>
+          <button @click='addToCart2' v-if='canAddToCart2'>
+              Add to cart
+          </button>
+        <button disabled='disabled' v-else>
+            Add to cart
+        </button>
+    -->
+
     </div>
     <div v-else>
         <!-- checkout page -->

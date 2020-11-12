@@ -7,15 +7,25 @@ let newwebstore2 = new Vue({
     el: '#app2',
     data: {
         sitename: 'After School Club',
-        maths: {
+        product: {
             id: 1001,
             title: "Maths",
             description: "London",
             price: "£" + 20,
             image: "https://www.flaticon.com/svg/static/icons/svg/2891/2891382.svg",
             //image2: "image 2 placeholder"
-            availableInventory: 5,
-        },
+            availableInventory: 10,
+            rating: 3,
+        },/*
+        english: {
+            id: 1002,
+            title: "English",
+            description: "London",
+            price: "£" + 15,
+            image: "https://www.flaticon.com/svg/static/icons/svg/947/947540.svg",
+            //image2: "image 2 placeholder"
+            availableInventory: 10,
+        },*/
         cart: [],
         showProduct: true,
         order: {
@@ -40,7 +50,10 @@ let newwebstore2 = new Vue({
     },
     methods: {
         addToCart: function() {
-            this.cart.push(this.maths.id);
+            this.cart.push(this.product.id);
+        },
+        addToCart2: function() {
+            this.cart.push(this.english.id);
         },
         showCheckout () {
             this.showProduct = this.showProduct ? false : true;
@@ -68,7 +81,10 @@ let newwebstore2 = new Vue({
             return this.cart.length || '';
         },
         canAddToCart: function () {
-            return this.maths.availableInventory > this.cartItemCount;
+            return this.product.availableInventory > this.cartItemCount;
+        },
+        canAddToCart2: function () {
+            return this.english.availableInventory > this.cartItemCount;
         },
         canGoToCheckout: function () {
             return 1 <= this.cartItemCount;
