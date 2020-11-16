@@ -117,17 +117,6 @@ let newwebstore2 = new Vue({
             }
             //end of price choice
 
-            //No sort
-            else if (this.order.sort === 'None') {
-                function compare(a, b) {
-                    if (a.id > b.id) return 1;
-                    if (a.id < b.id) return -1;
-                    return 0;
-                }
-                return this.products.sort(compare);
-            }
-            //end of no sort
-
             //sort Alphabetically
             else if (this.order.sort === 'Alphabetically'){
                 if (this.order.ascending === 'Asc') {
@@ -155,17 +144,20 @@ let newwebstore2 = new Vue({
             }
             // end of sort Alphabetically
 
+            //No sort
+            else if (this.order.sort === 'None') {
+                function compare(a, b) {
+                    if (a.id > b.id) return 1;
+                    if (a.id < b.id) return -1;
+                    return 0;
+                }
+                return this.products.sort(compare);
+            }
+            //end of no sort
+
             //if user doesn't select anything
             else {
                 return true;
-            }
-        },
-        testFunction () {
-            if (this.cart == 'Price') {
-                return true;
-            }
-            else {
-                return false;
             }
         },
         noSort () {
