@@ -7,25 +7,7 @@ let newwebstore2 = new Vue({
     el: '#app2',
     data: {
         sitename: 'After School Club',
-        product: {
-            id: 1001,
-            title: "Maths",
-            description: "London",
-            price: "£" + 20,
-            image: "https://www.flaticon.com/svg/static/icons/svg/2891/2891382.svg",
-            //image2: "image 2 placeholder"
-            availableInventory: 10,
-            rating: 3,
-        },/*
-        english: {
-            id: 1002,
-            title: "English",
-            description: "London",
-            price: "£" + 15,
-            image: "https://www.flaticon.com/svg/static/icons/svg/947/947540.svg",
-            //image2: "image 2 placeholder"
-            availableInventory: 10,
-        },*/
+        products: products,
         cart: [],
         showProduct: true,
         order: {
@@ -49,11 +31,8 @@ let newwebstore2 = new Vue({
         },
     },
     methods: {
-        addToCart: function() {
-            this.cart.push(this.product.id);
-        },
-        addToCart2: function() {
-            this.cart.push(this.english.id);
+        addToCart(product) {
+            this.cart.push(product.id);
         },
         showCheckout () {
             this.showProduct = this.showProduct ? false : true;
@@ -75,17 +54,34 @@ let newwebstore2 = new Vue({
             // if it isn't letters, dont add
             //prevent it if not
           },
+          canAddToCart (product) {
+            return product.availableInventory > this.cartCount
+            (product.id)
+        },
+          cartCount(id) {
+              let count = 0;
+              for(let i=0; i <this.cart.length; i++) {
+                  if (this.cart[i] === id) count++;
+              }
+              return count;
+          }
     },
     computed: {
-        cartItemCount: function() {
-            return this.cart.length || '';
+        
+        cartItemCount() {
+            return this.cart.length;
         },
+
+        /*
         canAddToCart: function () {
-            return this.product.availableInventory > this.cartItemCount;
+            return product.availableInventory > this.cartItemCount;
         },
+        
         canAddToCart2: function () {
             return this.english.availableInventory > this.cartItemCount;
         },
+        */
+       
         canGoToCheckout: function () {
             return 1 <= this.cartItemCount;
         },
