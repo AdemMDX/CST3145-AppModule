@@ -31,11 +31,23 @@
       <button disabled='disabled' v-else>
         <span class="fas fa-cart-plus"> </span> Checkout Page
       </button>
+      <p>
+        <strong>Sort:</strong>
+        <select v-model='order.sort'>
+            <option disabled value="">Sort</option>
+            <option v-for="(sort, key) in sort"
+            v-bind:value="sort">
+            {{key}}
+            </option>
+        </select>
+    </p>
+    <p>Products: {{cart}}</p>
       
 
         <main>
 
             <div v-for='product in products'>
+                <div v-if='sortedProducts'>
 
         <figure>
             <img v-bind:src="product.image" alt="product image" width="8%" height="auto">
@@ -68,7 +80,8 @@
             <span v-for='n in 5-product.rating'>☆</span>
         </div>
 
-        </div>
+    </div> <!-- end of sort -->
+        </div> <!-- end of 'for' products -->
 
 
     </div>
@@ -149,6 +162,7 @@
         <p>City: {{order.city}}</p>
         <p>Phone: {{order.phone}}</p>
         <p>Ship As A Gift?: {{order.gift}}</p>
+        <p>Products: {{cart}}</p>
         <!-- 
         <p>Zip: {{order.zip}}</p> 
         <p>State: {{order.state}}</p>
@@ -167,10 +181,28 @@
     </button>
     </div>
 
+
+    
+    <div style="float:left">
+        <div v-for='product in products'>
+<figure>
+    <img v-bind:src="product.image" alt="product image" width="12%" height="auto">
+  </figure>
+  <h2 v-text="product.title"></h2>
+  <p>Price: {{product.price}}</p>
+  <button @click='removeProduct'>
+      Remove from cart</button>
+</div> <!-- end of sort -->
+</div> <!-- end of 'for' products -->
+
     </div>
+
+    
 
         </main>
     </div>
+
+    
 
     <script type="module" src="lessons.js"></script>
 

@@ -15,7 +15,7 @@ let newwebstore2 = new Vue({
             lastname: '',
             address: '',
             city: '',
-            state: '',
+            sort: 'Normal',
             zip: '',
             gift: '',
             method: 'home',
@@ -23,11 +23,10 @@ let newwebstore2 = new Vue({
             dontSendGift: 'Do not send as gift',
             phone: '',
         },
-        states: {
-            AL: 'Alabama',
-            AR: 'Arizona',
-            CA: 'California',
-            NV: 'nevada',
+        sort: {
+            Normal: 'Normal',
+            Price: 'Price',
+            Alphabetically: 'Alphabetically',
         },
     },
     methods: {
@@ -64,7 +63,10 @@ let newwebstore2 = new Vue({
                   if (this.cart[i] === id) count++;
               }
               return count;
-          }
+          },
+          removeProduct (product){
+            this.cart.splice(product.id);
+        },
     },
     computed: {
         
@@ -87,6 +89,47 @@ let newwebstore2 = new Vue({
         },
         checkName: function () {
             return this.order.firstname == '' || this.order.lastname == '' || this.order.phone == '';
+        },
+        sortedProducts() {
+            //comparison
+
+            if (this.order.sort === 'Price') {
+                function compare(a, b) {
+                    if (a.price > b.price) return 1;
+                    if (a.price < b.price) return -1;
+                    return 0;
+                }
+                return this.products.sort(compare);
+            }
+            else if (this.order.sort === 'Normal') {
+                function compare(a, b) {
+                    if (a.id > b.id) return 1;
+                    if (a.id < b.id) return -1;
+                    return 0;
+                }
+                return this.products.sort(compare);
+            }
+            else if (this.order.sort === 'Alphabetically'){
+                    function compare(a, b) {				//#B
+                      if(a.title.toLowerCase() < b.title.toLowerCase())
+                        return -1;
+                      if(a.title.toLowerCase() > b.title.toLowerCase())
+                        return 1;
+                      return 0;
+                    }
+                    return this.products.sort(compare);		       //#C
+            }
+            else {
+                return true;
+            }
+        },
+        testFunction () {
+            if (this.cart == 'Price') {
+                return true;
+            }
+            else {
+                return false;
+            }
         },
     }//end of computed
 })//app2 id
