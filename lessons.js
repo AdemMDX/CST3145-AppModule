@@ -15,16 +15,17 @@ let newwebstore2 = new Vue({
             lastname: '',
             address: '',
             city: '',
-            sort: 'Normal',
+            sort: 'None',
             zip: '',
             gift: '',
             method: 'home',
             sendGift: 'Send as a gift',
             dontSendGift: 'Do not send as gift',
             phone: '',
+            ascending: 'Asc',
         },
         sort: {
-            Normal: 'Normal',
+            None: 'None',
             Price: 'Price',
             Alphabetically: 'Alphabetically',
         },
@@ -93,15 +94,31 @@ let newwebstore2 = new Vue({
         sortedProducts() {
             //comparison
 
+            //if user selects price
             if (this.order.sort === 'Price') {
+                //if its ascending
+                if (this.order.ascending === 'Asc') {
                 function compare(a, b) {
                     if (a.price > b.price) return 1;
                     if (a.price < b.price) return -1;
                     return 0;
                 }
                 return this.products.sort(compare);
+                }
+                else {
+                    //if its descending
+                function compare(a, b) {
+                    if (a.price < b.price) return 1;
+                    if (a.price > b.price) return -1;
+                    return 0;
+                }
+                return this.products.sort(compare);
+                }
             }
-            else if (this.order.sort === 'Normal') {
+            //end of price choice
+
+            //No sort
+            else if (this.order.sort === 'None') {
                 function compare(a, b) {
                     if (a.id > b.id) return 1;
                     if (a.id < b.id) return -1;
@@ -109,7 +126,12 @@ let newwebstore2 = new Vue({
                 }
                 return this.products.sort(compare);
             }
+            //end of no sort
+
+            //sort Alphabetically
             else if (this.order.sort === 'Alphabetically'){
+                if (this.order.ascending === 'Asc') {
+                    //if its ascending
                     function compare(a, b) {				//#B
                       if(a.title.toLowerCase() < b.title.toLowerCase())
                         return -1;
@@ -117,8 +139,23 @@ let newwebstore2 = new Vue({
                         return 1;
                       return 0;
                     }
-                    return this.products.sort(compare);		       //#C
+                    return this.products.sort(compare);	
+                           }	       //#C
+                    else {
+                        //if its descending
+                        function compare(a, b) {				//#B
+                            if(a.title.toLowerCase() > b.title.toLowerCase())
+                              return -1;
+                            if(a.title.toLowerCase() < b.title.toLowerCase())
+                              return 1;
+                            return 0;
+                          }
+                          return this.products.sort(compare);	
+                    }
             }
+            // end of sort Alphabetically
+
+            //if user doesn't select anything
             else {
                 return true;
             }
@@ -129,6 +166,14 @@ let newwebstore2 = new Vue({
             }
             else {
                 return false;
+            }
+        },
+        noSort () {
+            if (this.order.sort === 'None') {
+                return false;
+            }
+            else {
+                return true;
             }
         },
     }//end of computed

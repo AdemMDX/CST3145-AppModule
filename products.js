@@ -63,7 +63,7 @@ let products = [
         id: 1007,
         title: "Health",
         description: "London",
-        price: "£" + 5,
+        price: "£" + 10,
         image: "https://www.flaticon.com/svg/static/icons/svg/684/684262.svg",
         //image2: "image 2 placeholder"
         availableInventory: 10,

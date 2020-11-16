@@ -41,6 +41,22 @@
             </option>
         </select>
     </p>
+
+    <div v-if='noSort'>
+    <p>
+        <input type="radio" id='Asc' value='Asc' v-model='order.ascending'>
+        <label for="Asc">Ascending</label>
+        <input type="radio" id='Des' value='Des' v-model='order.ascending'>
+        <label for="Des">Descending</label>
+    </p>
+    </div>
+    <div v-else>
+        <input disabled='disabled' type="radio">
+        <label for="Asc">Ascending</label>
+        <input disabled='disabled' type="radio">
+        <label for="Des">Descending</label>
+    </div>
+    
     <p>Products: {{cart}}</p>
       
 
