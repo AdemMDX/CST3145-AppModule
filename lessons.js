@@ -21,6 +21,12 @@ let newwebstore2 = new Vue({
         products: products,
         cart: [
         ],
+        items2: [
+            {
+                title: "Maths",
+                price: "£" + 20,
+            },
+        ],
         showProduct: true,
         order: {
             firstname: '',
@@ -47,12 +53,12 @@ let newwebstore2 = new Vue({
     methods: {
         addToCart(product) {
 
-                this.cart.push(product.title);
+                this.cart.push(product.id);
         },
 
         addNewitem (product) 
             {
-            this.items.push({product})
+            this.items.push(product.title)
           },
 
         showCheckout () {
@@ -81,8 +87,8 @@ let newwebstore2 = new Vue({
         },
           cartCount(id) {
               let count = 0;
-              for(let i=0; i <this.cart.length; i++) {
-                  if (this.cart[i] === id) count++;
+              for(let i=0; i <this.items.length; i++) {
+                  if (this.items[i] === id) count++;
               }
               return count;
           },
@@ -93,9 +99,12 @@ let newwebstore2 = new Vue({
     computed: {
         
         cartItemCount() {
-            return this.cart.length;
+            return this.items.length;
         },
 
+        reduceItemCount() {
+           return this.cartItemCount - 1;
+        },
         /*
         canAddToCart: function () {
             return product.availableInventory > this.cartItemCount;
