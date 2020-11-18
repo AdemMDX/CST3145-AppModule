@@ -1,14 +1,26 @@
+Vue.component('cartItems', {
+    template: '\
+      <li>\
+        {{ id }}\
+        {{ price }}\
+        {{ title }}\
+        <button v-on:click="$emit(\'remove\')">Remove</button>\
+      </li>\
+    ',
+    props: ['id', 'price', 'title']
+  })
+
 let webstore = new Vue({
     el: '#app'
 }) //app id
-
 
 let newwebstore2 = new Vue({
     el: '#app2',
     data: {
         sitename: 'After School Club',
         products: products,
-        cart: [],
+        cart: [
+        ],
         showProduct: true,
         order: {
             firstname: '',
@@ -29,11 +41,24 @@ let newwebstore2 = new Vue({
             Price: 'Price',
             Alphabetically: 'Alphabetically',
         },
+
+    items: [
+
+    ],
+    nextitemId: 0
     },
+
     methods: {
         addToCart(product) {
-            this.cart.push(product.id);
+
+                this.cart.push(product.title);
         },
+
+        addNewitem (product) 
+            {
+            this.items.push({product})
+          },
+
         showCheckout () {
             this.showProduct = this.showProduct ? false : true;
         },

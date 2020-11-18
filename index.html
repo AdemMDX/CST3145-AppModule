@@ -57,7 +57,16 @@
         <label for="Des">Descending</label>
     </div>
     
-    <p>Products: {{cart}}</p>
+
+ 
+        <p>Cart: {{cart}}</p>
+
+        <!-- <ul>
+            <li v-for="c2 in cart">{{cart}}</li>
+        </ul>
+        -->
+
+
       
 
         <main>
@@ -78,7 +87,7 @@
           <!-- price is the tect that displays while product.price displays it -->
           <p>Available Spaces: {{product.availableInventory}}</p>
 
-          <button @click='addToCart(product)' v-if='canAddToCart(product)'>
+          <button @click='addToCart(product);addNewitem(product)' v-if='canAddToCart(product)'>
               Add to cart</button>
         <button disabled='disabled' v-else>Add to cart</button>
         
@@ -201,13 +210,16 @@
     
     <div style="float:left">
         <div v-for='product in products'>
-<figure>
-    <img v-bind:src="product.image" alt="product image" width="12%" height="auto">
-  </figure>
-  <h2 v-text="product.title"></h2>
-  <p>Price: {{product.price}}</p>
-  <button @click='removeProduct'>
-      Remove from cart</button>
+  <ul>
+    <li
+      is="cartItems"
+      v-for="(item, index) in items"
+      v-bind:id="product.id"
+      v-bind:price="product.price"
+      v-bind:title="product.title"
+      v-on:remove="items.splice(index, 1)"
+    ></li>
+  </ul>
 </div> <!-- end of sort -->
 </div> <!-- end of 'for' products -->
 
