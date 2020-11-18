@@ -41,12 +41,8 @@ let newwebstore2 = new Vue({
             Price: 'Price',
             Alphabetically: 'Alphabetically',
         },
-
-    items: [
-
-    ],
-    nextitemId: 0
-    },
+        items: [],
+        },
 
     methods: {
         addToCart(product) {
