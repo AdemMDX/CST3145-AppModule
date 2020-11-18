@@ -58,8 +58,9 @@
     </div>
     
 
- 
+ <!--
         <p>Cart: {{items}}</p>
+        -->
 
         <!-- <ul>
             <li v-for="c2 in cart">{{cart}}</li>
@@ -187,7 +188,7 @@
         <p>City: {{order.city}}</p>
         <p>Phone: {{order.phone}}</p>
         <p>Ship As A Gift?: {{order.gift}}</p>
-        <p>Products: {{items}}</p>
+        <p>Products in Basket: {{items}}</p>
         <!-- 
         <p>Zip: {{order.zip}}</p> 
         <p>State: {{order.state}}</p>
@@ -217,9 +218,8 @@
       v-on:remove="items.splice(index, 1)"
     ></li>
   </ul>
+  </div>
   
-</div> <!-- end of sort -->
-</div> <!-- end of 'for' products -->
 
     </div>
 
