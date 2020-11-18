@@ -1,13 +1,11 @@
 Vue.component('cartItems', {
     template: '\
       <li>\
-        {{ id }}\
-        {{ price }}\
         {{ title }}\
         <button v-on:click="$emit(\'remove\')">Remove</button>\
       </li>\
     ',
-    props: ['id', 'price', 'title']
+    props: ['title']
   })
 
 let webstore = new Vue({
@@ -20,12 +18,6 @@ let newwebstore2 = new Vue({
         sitename: 'After School Club',
         products: products,
         cart: [
-        ],
-        items2: [
-            {
-                title: "Maths",
-                price: "£" + 20,
-            },
         ],
         showProduct: true,
         order: {
@@ -58,7 +50,7 @@ let newwebstore2 = new Vue({
 
         addNewitem (product) 
             {
-            this.items.push(product.title)
+            this.items.push(product.title + ' ' + product.price)
           },
 
         showCheckout () {
@@ -83,7 +75,7 @@ let newwebstore2 = new Vue({
           },
           canAddToCart (product) {
             return product.availableInventory > this.cartCount
-            (product.title)
+            (product.title + ' ' + product.price)
         },
           cartCount(id) {
               let count = 0;
