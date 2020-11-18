@@ -83,7 +83,7 @@ let newwebstore2 = new Vue({
           },
           canAddToCart (product) {
             return product.availableInventory > this.cartCount
-            (product.id)
+            (product.title)
         },
           cartCount(id) {
               let count = 0;
@@ -100,10 +100,6 @@ let newwebstore2 = new Vue({
         
         cartItemCount() {
             return this.items.length;
-        },
-
-        reduceItemCount() {
-           return this.cartItemCount - 1;
         },
         /*
         canAddToCart: function () {

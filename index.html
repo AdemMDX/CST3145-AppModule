@@ -91,11 +91,11 @@
               Add to cart</button>
         <button disabled='disabled' v-else>Add to cart</button>
         
-        <span v-if="product.availableInventory === cartCount(product.id)"> 
+        <span v-if="product.availableInventory === cartCount(product.title)"> 
             All out!</span>
 
-        <span v-else-if='product.availableInventory - cartCount(product.id) < 5'>
-            Only {{product.availableInventory - cartCount(product.id)}} left!
+        <span v-else-if='product.availableInventory - cartCount(product.title) < 5'>
+            Only {{product.availableInventory - cartCount(product.title)}} left!
         </span>
 
         <span v-else>Buy now!</span>
@@ -214,7 +214,7 @@
       is="cartItems"
       v-for="(item, index) in items"
       v-bind:title="items, index"
-      v-on:remove="items.splice(index, 1);reduceItemCount"
+      v-on:remove="items.splice(index, 1)"
     ></li>
   </ul>
   
